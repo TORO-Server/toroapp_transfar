@@ -1,0 +1,21 @@
+{
+    "name": "TORO Server 乗換案内 ベータ版",
+    "short_name": "TORO乗換案内",
+    "description": "TORO Serverの鉄道路線を案内します。",
+    "icons": [
+        {
+            "src": "./image/torobeta192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./image/torobeta256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "./index.html",
+    "display": "fullscreen",
+    "theme_color": "#DA5757",
+    "background_color": "#white"
+}

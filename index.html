@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>TORO路線検索</title>
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" href="image/favicon.png">
+  <link rel="stylesheet" href="sheet.css">
+  <link rel="manifest" href="/manifest.json">
+  <script src="script.js"></script>
+
+</head>
+
+<body>
+  <div class="back">
+    <div class="title">
+      <p>TORO 乗換案内 v0.1</p>
+      <div class="title-sub">
+        <p>Powered by Haruto_wat, _Salmon2</p>
+      </div>
+    </div>
+    <div class="inputform">
+      <div class="textput-flex">
+        <input type="text" id="from" name="name" autocomplete="off" size="15" value="">
+        <p>から</p>
+        <p></p>
+        <input type="text" id="to" name="name" autocomplete="off" size="15" value="">
+        <p>まで</p>
+        <p></p>
+      </div>
+      <input type="button" value="検索！" onclick="requestbutton();">
+    </div>
+    <div class="space"></div>
+    <div class="result">
+      <div class="result_title">
+        <p>検索結果</p>
+      </div>
+      <div id="result_data">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
