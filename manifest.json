@@ -3,6 +3,7 @@
 	"name": "TORO 乗換案内アプリ",
 	"display": "fullscreen",
 	"start_url": "index.html",
+	"theme_color": "#DA5757",
 	"icons": [
 		{
 			"src": "images/app-icon-192.png",
