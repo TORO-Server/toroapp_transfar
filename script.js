@@ -5,6 +5,24 @@
 // R = 乗車駅
 // G = 下車駅
 
+"use strict";
+
+registSW();
+
+function registSW() {
+
+  // Service Worker 対応ブラウザの場合、スコープに基づいてService Worker を登録する
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./sw.js', { scope: './' }).then(function (registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function (err) {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+}
 function requestbutton() {
     let from = document.getElementById("from").value;
     let to = document.getElementById("to").value;
