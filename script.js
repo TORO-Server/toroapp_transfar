@@ -46,7 +46,7 @@ function requestbutton() {
 
             result_data_id.insertAdjacentHTML('beforeend', `<h1>${data.main.slice(-1)[0][0]}</h1><p>で下車</p>`);//降りる場所表示
 
-            result_data_id.insertAdjacentHTML('beforeend', `<p>移動距離は${data.length}ブロックです。`);//移動ブロック表示
+            result_data_id.insertAdjacentHTML('beforeend', `<p>移動距離は${data.length}秒です。`);//移動ブロック表示
 
             console.log(data.main);
         });
