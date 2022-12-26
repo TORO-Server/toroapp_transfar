@@ -35,7 +35,7 @@ function requestbutton() {
 
             result_data_id.innerHTML = "";//<div id="result_data">内を何も書いていない状態にする
 
-            result_data_id.insertAdjacentHTML('beforeend', `<h1>${data.main[0][0]}</h1><p>の${data.main[0][1]}から乗車</p>`);//乗車する場所表示
+            result_data_id.insertAdjacentHTML('beforeend', `<h1>${data.main[0][0]}</h1><p>で${data.main[0][1]}に乗車</p>`);//乗車する場所表示
 
             for (let loop = 0; loop < data.main.length; loop++) {
                 if (data.main[loop][1] != search) {//もし乗換する場所を見つけたら乗換表示の要素追加
@@ -46,7 +46,10 @@ function requestbutton() {
 
             result_data_id.insertAdjacentHTML('beforeend', `<h1>${data.main.slice(-1)[0][0]}</h1><p>で下車</p>`);//降りる場所表示
 
-            result_data_id.insertAdjacentHTML('beforeend', `<p>移動距離は${data.length}秒です。`);//移動ブロック表示
+            let min = ~~(data.length/60);
+            let sec = (data.length%60);
+
+            result_data_id.insertAdjacentHTML('beforeend', `<p>移動距離は${min}分${sec}秒です。`);//移動ブロック表示
 
             console.log(data.main);
         });
