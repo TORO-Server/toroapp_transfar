@@ -22,17 +22,17 @@ if ('serviceWorker' in navigator) {
 </script>
 	<div class="back">
 	  <div class="title">
-		<p>TORO 乗換案内 v0.2</p>
+		<p>TORO 乗換案内 v0.3</p>
 		<div class="title-sub">
 		  <p>Powered by Marumasa, Salmon</p>
 		</div>
 	  </div>
 	  <div class="inputform">
 		<div class="textput-flex">
-		  <input type="text" id="from" name="name" autocomplete="off" size="15" value="高槻">
+		  <input type="text" id="from" name="name" autocomplete="off" size="10" value="高槻">
 		  <p>から</p>
 		  <p></p>
-		  <input type="text" id="to" name="name" autocomplete="off" size="15" value="石北">
+		  <input type="text" id="to" name="name" autocomplete="off" size="10" value="石北">
 		  <p>まで</p>
 		  <p></p>
 		</div>
@@ -43,7 +43,7 @@ if ('serviceWorker' in navigator) {
 		<div class="result_title">
 		  <p>検索結果</p>
 		</div>
-		<div id="result_data">
+			<div class="result_data" id="result_data"></div>
 		</div>
 	  </div>
 	</div>
