@@ -4,6 +4,6 @@ This program is used for transit directions on the TORO server!
 試してみる→https://toro-server.github.io/toroapp_transfar/
 
 # History
-v.01 First release(2022.04.10),
-v.02 ?,
-v.03 Result design update(2022.12.31)
+v0.1 First release(2022.04.10),
+v0.2 ?,
+v0.3 Result design update(2022.12.31)
