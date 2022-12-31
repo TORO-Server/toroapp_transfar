@@ -1,51 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="images/app-icon-192.png">
-<title>TORO乗換案内</title>
-<link rel="stylesheet" href="sheet.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="manifest" href="manifest.json">
+	<link rel="icon" href="images/app-icon-192.png">
+	<title>TORO乗換案内</title>
+	<link rel="stylesheet" href="sheet.css">
+	<script src="script.js"></script>
 </head>
+
 <body>
-<script src="script.js"></script>
-<script>
-// ServiceWorker登録：https://developers.google.com/web/fundamentals/primers/service-workers/?hl=ja
-if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('sw.js').then(function(registration) {
-		console.log('ServiceWorker registration successful with scope: ', registration.scope);
-	}).catch(function(err) {
-		console.log('ServiceWorker registration failed: ', err);
-	});
-}
-</script>
+	<datalist id="stationList"></datalist>
+
 	<div class="back">
-	  <div class="title">
-		<p>TORO 乗換案内 v0.3</p>
-		<div class="title-sub">
-		  <p>Powered by Marumasa, Salmon</p>
+		<div class="title">
+			<p>TORO 乗換案内 v0.3</p>
+			<div class="title-sub">
+				<p>Powered by Marumasa, Salmon</p>
+			</div>
 		</div>
-	  </div>
-	  <div class="inputform">
-		<div class="textput-flex">
-		  <input type="text" id="from" name="name" autocomplete="off" size="10" value="高槻">
-		  <p>から</p>
-		  <p></p>
-		  <input type="text" id="to" name="name" autocomplete="off" size="10" value="石北">
-		  <p>まで</p>
-		  <p></p>
+		<div class="inputform">
+			<div class="textput-flex">
+				<input type="text" id="from" name="name" autocomplete="off" size="10" value="高槻" list="stationList">
+				<p>から</p>
+				<p></p>
+				<input type="text" id="to" name="name" autocomplete="off" size="10" value="石北" list="stationList">
+				<p>まで</p>
+				<p></p>
+			</div>
+			<input type="button" value="検索！" onclick="requestbutton();">
 		</div>
-		<input type="button" value="検索！" onclick="requestbutton();">
-	  </div>
-	  <div class="space"></div>
-	  <div class="result">
-		<div class="result_title">
-		  <p>検索結果</p>
-		</div>
+		<div class="space"></div>
+		<div class="result">
+			<div class="result_title">
+				<p>検索結果</p>
+			</div>
 			<div class="result_data" id="result_data"></div>
 		</div>
-	  </div>
+	</div>
 	</div>
 </body>
+
 </html>
