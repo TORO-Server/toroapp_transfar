@@ -58,7 +58,7 @@ async function requestbutton() {
     }
   }
 
-  result_data_id.insertAdjacentHTML('beforeend', `<div class="sta"><div class="station"><br></div><h1>${data.main.slice(-1)[0][0]}</h1></div>`);//降りる場所表示
+  //result_data_id.insertAdjacentHTML('beforeend', `<div class="sta"><div class="station"><br></div><h1>${data.main.slice(-1)[0][0]}</h1></div>`);//降りる場所表示
 
   let min = ~~(data.length / 60);
   let sec = (data.length % 60);
