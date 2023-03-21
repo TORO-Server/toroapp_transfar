@@ -21,6 +21,9 @@ p{
     font-size: 15px;
     font-weight: normal;
 }
+.title p{
+    margin-left: 5px;
+}
 .space {
     height: 15px;
 }
@@ -98,10 +101,20 @@ input[type="button"]{
 }
 .loc_img{
     margin-top: 30px;
-    width: 90%;
-    margin: 5%;
+    width: 100%;
 }
 .loc_img img{
     text-align: center;
     width: 100%;
+}
+@media (min-width: 600px) {
+    .result{
+        width: 40%;
+    }
+    .side_navi{
+        width: 58%;
+    }
+    .flex{
+        display: flex;
+    }
 }

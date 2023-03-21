@@ -63,7 +63,7 @@ async function requestbutton() {
   let min = ~~(data.length / 60);
   let sec = (data.length % 60);
 
-  //result_data_id.insertAdjacentHTML('beforeend', `<br><p>移動距離は${min}分${sec}秒です。`);//移動ブロック表示
+  result_data_id.insertAdjacentHTML('beforeend', `<br><p>移動距離は${min}分${sec}秒です。`);//移動ブロック表示
 
   console.log(data.main);
 }
