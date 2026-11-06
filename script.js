@@ -27,14 +27,35 @@ function registSW() {
   }
 }
 
-// ServiceWorker登録：https://developers.google.com/web/fundamentals/primers/service-workers/?hl=ja
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').then(function (registration) {
-    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-  }).catch(function (err) {
-    console.log('ServiceWorker registration failed: ', err);
-  });
+//---------- 表示の部品 ----------//
+// 駅名や路線名はスプレッドシートから来るので、HTML として解釈させない (textContent で入れる)
+
+function createMark(className) {// 路線図の印
+  const mark = document.createElement("div");
+  mark.className = className;
+  mark.appendChild(document.createElement("br"));
+  return mark;
 }
+
+function createStation(markClass, stationName) {// 駅の行
+  const station = document.createElement("div");
+  station.className = "sta";
+  const name = document.createElement("h1");
+  name.textContent = stationName;
+  station.append(createMark(markClass), name);
+  return station;
+}
+
+function createLine(lineName) {// 路線の行
+  const line = document.createElement("div");
+  line.className = "line";
+  const name = document.createElement("p");
+  name.textContent = lineName;
+  line.append(createMark("connect"), name);
+  return line;
+}
+//---------- 表示の部品 ----------//
+
 
 //---------- 検索 & 検索結果表示処理 ----------//
 async function requestbutton() {
@@ -42,23 +63,31 @@ async function requestbutton() {
   let to = document.getElementById("to").value;
 
   // Get リクエスト
-  const data = await get(`${url}?from=${from}&to=${to}`);
+  const data = await get(`${url}?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`);
 
-  let search = data.main[0][1];//出発駅代入
   let result_data_id = document.getElementById('result_data');//<div id="result_data">を取得
 
-  result_data_id.innerHTML = "";//<div id="result_data">内を何も書いていない状態にする
+  result_data_id.replaceChildren();//<div id="result_data">内を何も書いていない状態にする
 
-  result_data_id.insertAdjacentHTML('beforeend', `<div class="sta"><div class="station"><br></div><h1>${data.main[0][0]}</h1></div><div class="line"><div class="connect"><br></div><p>${data.main[0][1]}</p></div>`);//乗車する場所表示
+  if (!Array.isArray(data.main) || data.main.length === 0) {//経路が見つからなかったとき
+    const message = document.createElement("p");
+    message.textContent = "経路が見つかりませんでした。";
+    result_data_id.appendChild(message);
+    return;
+  }
+
+  let search = data.main[0][1];//出発駅代入
+
+  result_data_id.append(createStation("station", data.main[0][0]), createLine(data.main[0][1]));//乗車する場所表示
 
   for (let loop = 0; loop < data.main.length; loop++) {
     if (data.main[loop][1] != search) {//もし乗換する場所を見つけたら乗換表示の要素追加
       search = data.main[loop][1];
-      result_data_id.insertAdjacentHTML('beforeend', `<div class="sta"><div class="trans"><br></div><h1>${data.main[loop - 1][0]}</h1></div><div class="line"><div class="connect"><br></div><p>${data.main[loop][1]}</p></div>`);
+      result_data_id.append(createStation("trans", data.main[loop - 1][0]), createLine(data.main[loop][1]));
     }
   }
 
-  result_data_id.insertAdjacentHTML('beforeend', `<div class="sta"><div class="station"><br></div><h1>${data.main.slice(-1)[0][0]}</h1></div>`);//降りる場所表示
+  result_data_id.appendChild(createStation("station", data.main.slice(-1)[0][0]));//降りる場所表示
 
   let min = ~~(data.length / 60);
   let sec = (data.length % 60);
@@ -78,7 +107,9 @@ async function requestbutton() {
   console.log(stationList.main);
 
   for (const stationData of stationList.main) {
-    stationDatalist.insertAdjacentHTML("beforeend", `<option value="${stationData}">`);
+    const option = document.createElement("option");
+    option.value = stationData;
+    stationDatalist.appendChild(option);
   }
   console.log(stationList.main);
 
