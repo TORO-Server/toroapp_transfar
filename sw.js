@@ -4,6 +4,8 @@
 // キャッシュ名とキャッシュファイルの指定
 // ファイルを変えたら番号を上げる (古いキャッシュは activate で消える)
 var CACHE_NAME = 'toroapp-transfar-v1';
+// 自サイトのキャッシュ名の接頭辞 (activate で消すのはこの接頭辞のものだけ)
+var CACHE_PREFIX = 'toroapp-transfar-';
 var urlsToCache = [
 	'./',
 	'./sheet.css',
@@ -35,7 +37,7 @@ self.addEventListener('activate', function(event) {
 			.keys()
 			.then(function(names) {
 				return Promise.all(names.filter(function(name) {
-					return name !== CACHE_NAME;
+					return name.indexOf(CACHE_PREFIX) === 0 && name !== CACHE_NAME;
 				}).map(function(name) {
 					return caches.delete(name);
 				}));
