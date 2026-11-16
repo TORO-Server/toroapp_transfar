@@ -3,12 +3,13 @@
 
 // キャッシュ名とキャッシュファイルの指定
 // ファイルを変えたら番号を上げる (古いキャッシュは activate で消える)
-var CACHE_NAME = 'toroapp-transfar-v1';
+var CACHE_NAME = 'toroapp-transfar-v2';
 // 自サイトのキャッシュ名の接頭辞 (activate で消すのはこの接頭辞のものだけ)
 var CACHE_PREFIX = 'toroapp-transfar-';
 var urlsToCache = [
 	'./',
 	'./sheet.css',
+	'./config.js',
 	'./script.js',
 	'./manifest.json',
 	'./images/location.png',

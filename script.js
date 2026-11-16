@@ -9,8 +9,6 @@
 
 registSW();
 
-// 経路検索API の URL
-const url = "https://script.google.com/macros/s/AKfycbxYA8zo16so3zlystt-1vTK8GbpRANUZPOdphESCQy2GmEAlQpj_POQtCR8bdaOnpM/exec";
 
 function registSW() {
 
@@ -63,7 +61,7 @@ async function requestbutton() {
   let to = document.getElementById("to").value;
 
   // Get リクエスト
-  const data = await get(`${url}?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`);
+  const data = await get(`${API_URL}?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`);
 
   let result_data_id = document.getElementById('result_data');//<div id="result_data">を取得
 
@@ -101,7 +99,7 @@ async function requestbutton() {
 
 //---------- このjsファイルが読み込まれた瞬間に発動 予測変換を設定する部分 ----------//
 (async () => {// 干渉しないように 即時関数
-  const stationList = await get(`${url}?list=station`);
+  const stationList = await get(`${API_URL}?list=station`);
 
   const stationDatalist = document.getElementById('stationList');
   console.log(stationList.main);
